@@ -25,20 +25,26 @@ void percent_handle(const char *format)
 
 /**
  * handle_s - Takes care of '%s' format spacifier
- * @sformat: format s placeholder"
+ * @strn: format s placeholder"
  *
  * =========================================================
 */
-
-void handle_s(const char *sformat)
+int handle_s(const char *strn)
 {
+	/*va_list str;*/
 	int i;
+	/*char *strn;*/
+	if (strn == NULL)
+	{
+		strn = "(null)";
+	}
 
-	for (i = 0; sformat[i] != '\0'; i++)
+	for (i = 0; strn[i]; i++)
 	{
 		/* iterate over ther the character to print it out*/
-		_putchar(sformat[i]);
+		_putchar(strn[i]);
 	}
+	return (i);
 }
 
 /**
@@ -47,7 +53,8 @@ void handle_s(const char *sformat)
  *
  * ==========================================================
 */
-void handle_c(const int text)
+int handle_c(const int text)
 {
-	_putchar(text);
+	write(1, &text, 1);
+	return (1);
 }
