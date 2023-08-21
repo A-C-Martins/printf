@@ -65,3 +65,8 @@ int handle_d(const int *format)
     return (1);
 }
 
+int handle_i(const int *format)
+{
+    write(1, &format, 1);
+    return (1);
+}

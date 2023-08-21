@@ -39,6 +39,11 @@ int _printf(const char *format, ...)
                         			handle_d(va_arg(args, const int));
                         			break;
                     			}
+				case 'i':
+                    			{
+                        			handle_i(va_arg(args, const int));
+                        			break;
+                    			}
 				default:
 					{
 						break;
