@@ -6,7 +6,7 @@
 */
 void percent_handle(const char *format)
 {
-	if (*format == '%' a&& *(format + 1) == '%')
+	if (*format == '%' && *(format + 1) == '%')
 	{
 		_putchar('%');
 		format += 2;
