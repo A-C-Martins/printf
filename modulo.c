@@ -21,7 +21,6 @@ void percent_handle(const char *format)
 			/*print a '%' character*/
 			/*putchar('A');*/
 		}
-	return;
 }
 
 /**

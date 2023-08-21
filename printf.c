@@ -3,6 +3,8 @@
 /**
  * _printf - prints out inputs
  * @format: inputed string
+ *
+ * Return: 0 success
  */
 
 int _printf(const char *format, ...)
@@ -15,13 +17,10 @@ int _printf(const char *format, ...)
 	/* iterating throgh the agument*/
 	for (i = 0; format[i] != '\0'; i++)
 	{
-		/* check on format specifier '%' */
 		if (format[i] == '%')
 		{
-			/* call on percent_handle() */
 			percent_handle(format);
 			i++;
-			/*using switch to check on other formats*/
 
 			switch (format[i])
 			{
