@@ -7,10 +7,5 @@
 #include <unistd.h>
 
 int _printf(const char *format, ...);
-void percent_handle(const char *format);
-int handle_s(const char *strn);
-int handle_c(const int text);
-/*#define str va_arg(args, const char *)*/
-int _putchar(char c);
 
 #endif

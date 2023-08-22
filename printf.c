@@ -1,5 +1,5 @@
 #include "main.h"
-
+#include <stdarg.h>
 /**
  * _printf - prints out inputs
  * @format: inputed string
@@ -14,39 +14,44 @@ int _printf(const char *format, ...)
 
 	va_start(args, format);
 
-	/* iterating throgh the agument*/
-	for (i = 0; format[i] != '\0'; i++)
-	{
-		if (format[i] == '%')
-		{
-			percent_handle(format);
-			i++;
+	int i = 0;
 
-			switch (format[i])
-			{
-				case 's':
-					{
-						handle_s(va_arg(args, const char*));
-						break;
-					}
-				case 'c':
-					{
-						handle_c(va_arg(args, const int));
-						break;
-					}
-				default:
-					{
-						break;
-					}
-			}
-		}
-		else
+	for (const char *c = format; *c != '\0'; ++c)
+	{
+	if (*c == '%')
 		{
-			/*print non format specifier*/
-			_putchar(format[i]);
+			++c;
+			switch (*c)
+		{
+		case 'd':
+		{
+			int int_arg = va_arg(args, int);
+			i += _printf("%d", int_arg);
+			break;
 		}
+		case 's':
+		{
+			char *str_arg = va_arg(args, char *);
+			i += _printf("%s", str_arg);
+			break;
+		}
+		case 'c':
+		{
+			int char_arg = va_arg(args, int);
+			i += _putchar(char_arg);
+			break;
+		}
+		default:
+			i += _putchar(*c);
+			break;
+		}
+	}
+	else
+	{
+		i += _putchar(*c);
+	}
 	}
 
 	va_end(args);
-	return (0);
+	return (i);
 }
