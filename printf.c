@@ -1,10 +1,10 @@
 #include "main.h"
-#include <stdarg.h>
+
+int (*l)(va_list);
+int j = 0, c;
 /**
  * _printf - prints out inputs
  * @format: inputed string
- *
- * Return: 0 success
  */
 
 int _printf(const char *format, ...)
@@ -14,44 +14,62 @@ int _printf(const char *format, ...)
 
 	va_start(args, format);
 
-	int i = 0;
+	/* iterating throgh the agument*/
+	for (i = 0; format[i] != '\0'; i++)
+	{
+		/* check on format specifier '%' */
+		if (format[i] == '%')
+		{
+			/* call on percent_handle() */
+			percent_handle(format);
+			i++;
+			/*using switch to check on other formats*/
 
-	for (const char *c = format; *c != '\0'; ++c)
-	{
-	if (*c == '%')
-		{
-			++c;
-			switch (*c)
-		{
-		case 'd':
-		{
-			int int_arg = va_arg(args, int);
-			i += _printf("%d", int_arg);
-			break;
+			switch (format[i])
+			{
+				case 's':
+					{
+						handle_s(va_arg(args, const char*));
+						break;
+					}
+				case 'c':
+					{
+						handle_c(va_arg(args, const int));
+						break;
+					}
+				case 'r':
+				    {
+						handle_r(va_arg(args, const int));
+						break;
+					}
+				case 'l':
+					{
+						l = get_non_c(format[i + 1]);
+						if (l == NULL)
+						{
+							write(1, &format[i], 1);
+							j++;
+						}
+						else
+						{
+							j = j + l(args);
+							c++;
+						}
+						i++;
+					}
+				default:
+					{
+						break;
+					}
+			}
 		}
-		case 's':
+		else
 		{
-			char *str_arg = va_arg(args, char *);
-			i += _printf("%s", str_arg);
-			break;
+			/*print non format specifier*/
+			_putchar(format[i]);
 		}
-		case 'c':
-		{
-			int char_arg = va_arg(args, int);
-			i += _putchar(char_arg);
-			break;
-		}
-		default:
-			i += _putchar(*c);
-			break;
-		}
-	}
-	else
-	{
-		i += _putchar(*c);
-	}
 	}
 
 	va_end(args);
-	return (i);
+	return (0);
 }
