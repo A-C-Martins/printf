@@ -1,5 +1,5 @@
 #include "main.h"
-
+#include <stdarg.h>
 /**
  * _printf - prints out inputs
  * @format: inputed string
@@ -14,49 +14,48 @@ int _printf(const char *format, ...)
 
 	va_start(args, format);
 
-	/* iterating throgh the agument*/
-	for (i = 0; format[i] != '\0'; i++)
+    int i = 0; // To keep track of characters printed
+
+    for (const char *c = format; *c != '\0'; ++c) 
+    {
+        if (*c == '%') 
 	{
-		if (format[i] == '%')
+            ++c; // Move past '%'
+            switch (*c) 
+	    {
+                case 'd': 
 		{
-			percent_handle(format);
-			i++;
-
-			switch (format[i])
-			{
-				case 's':
-					{
-						handle_s(va_arg(args, const char*));
-						break;
-					}
-				case 'c':
-					{
-						handle_c(va_arg(args, const int));
-						break;
-					}
-				case 'd':
-                    			{
-                        			handle_d(va_arg(args, const int));
-                        			break;
-                    			}
-				case 'i':
-                    			{
-                        			handle_i(va_arg(args, const int));
-                        			break;
-                    			}
-				default:
-					{
-						break;
-					}
-			}
-		}
-		else
+                    // Handle integer format
+                    int int_arg = va_arg(args, int);
+                    i += printf("%d", int_arg);
+                    break;
+                }
+                case 's': 
 		{
-			/*print non format specifier*/
-			_putchar(format[i]);
-		}
-	}
+                    // Handle string format
+                    char *str_arg = va_arg(args, char *);
+                    i += printf("%s", str_arg);
+                    break;
+                }
+                case 'c': 
+		{
+                    // Handle character format
+                    int char_arg = va_arg(args, int);
+                    i += putchar(char_arg);
+                    break;
+                }
+                default:
+                    // Just print the character after '%'
+                    i += putchar(*c);
+                    break;
+            }
+        } 
+	else 
+	{
+            i += putchar(*c);
+        }
+    }
 
-	va_end(args);
-	return (0);
+    va_end(args);
+	return (i);
 }
