@@ -6,6 +6,10 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+void percent_handle(const char *format);
+int handle_s(const char *strn);
+int handle_c(const int text);
+int _putchar(char c);
 int _printf(const char *format, ...);
 
 typedef struct print_lh
