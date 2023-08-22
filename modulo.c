@@ -27,6 +27,7 @@ void percent_handle(const char *format)
  * handle_s - Takes care of '%s' format spacifier
  * @strn: format s placeholder"
  *
+ * Return: i
  * =========================================================
 */
 int handle_s(const char *strn)
@@ -51,6 +52,7 @@ int handle_s(const char *strn)
  * handle_c - handlels the c format
  * @text: character handled
  *
+ * Return: 1
  * ==========================================================
 */
 int handle_c(const int text)
