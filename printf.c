@@ -26,29 +26,29 @@ int _printf(const char *format, ...)
 		case 'd':
 		{
 			int int_arg = va_arg(args, int);
-			i += printf("%d", int_arg);
+			i += _printf("%d", int_arg);
 			break;
 		}
 		case 's':
 		{
 			char *str_arg = va_arg(args, char *);
-			i += printf("%s", str_arg);
+			i += _printf("%s", str_arg);
 			break;
 		}
 		case 'c':
 		{
 			int char_arg = va_arg(args, int);
-			i += putchar(char_arg);
+			i += _putchar(char_arg);
 			break;
 		}
 		default:
-			i += putchar(*c);
+			i += _putchar(*c);
 			break;
 		}
 	}
 	else
 	{
-		i += putchar(*c);
+		i += _putchar(*c);
 	}
 	}
 
