@@ -11,7 +11,5 @@ void percent_handle(const char *format);
 int handle_s(const char *strn);
 int handle_c(const int text);
 int print_int(va_list x);
-/*#define str va_arg(args, const char *)*/
-int _putchar(char c);
 
 #endif
