@@ -14,48 +14,44 @@ int _printf(const char *format, ...)
 
 	va_start(args, format);
 
-    int i = 0; // To keep track of characters printed
+	int i = 0;
 
-    for (const char *c = format; *c != '\0'; ++c) 
-    {
-        if (*c == '%') 
+	for (const char *c = format; *c != '\0'; ++c)
 	{
-            ++c; // Move past '%'
-            switch (*c) 
-	    {
-                case 'd': 
+	if (*c == '%')
 		{
-                    // Handle integer format
-                    int int_arg = va_arg(args, int);
-                    i += printf("%d", int_arg);
-                    break;
-                }
-                case 's': 
+			++c;
+			switch (*c)
 		{
-                    // Handle string format
-                    char *str_arg = va_arg(args, char *);
-                    i += printf("%s", str_arg);
-                    break;
-                }
-                case 'c': 
+		case 'd':
 		{
-                    // Handle character format
-                    int char_arg = va_arg(args, int);
-                    i += putchar(char_arg);
-                    break;
-                }
-                default:
-                    // Just print the character after '%'
-                    i += putchar(*c);
-                    break;
-            }
-        } 
-	else 
+			int int_arg = va_arg(args, int);
+			i += printf("%d", int_arg);
+			break;
+		}
+		case 's':
+		{
+			char *str_arg = va_arg(args, char *);
+			i += printf("%s", str_arg);
+			break;
+		}
+		case 'c':
+		{
+			int char_arg = va_arg(args, int);
+			i += putchar(char_arg);
+			break;
+		}
+		default:
+			i += putchar(*c);
+			break;
+		}
+	}
+	else
 	{
-            i += putchar(*c);
-        }
-    }
+		i += putchar(*c);
+	}
+	}
 
-    va_end(args);
+	va_end(args);
 	return (i);
 }
