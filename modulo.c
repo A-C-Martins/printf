@@ -60,15 +60,3 @@ int handle_c(const int text)
 	write(1, &text, 1);
 	return (1);
 }
-
-int handle_d(const int *format)
-{
-    write(1, &format, 1);
-    return (1);
-}
-
-int handle_i(const int *format)
-{
-    write(1, &format, 1);
-    return (1);
-}
