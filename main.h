@@ -9,6 +9,8 @@
 void percent_handle(const char *format);
 int handle_s(const char *strn);
 int handle_c(const int text);
+int handle_i(const int text);
+int handle_d(const int text);
 int _putchar(char c);
 int _printf(const char *format, ...);
 

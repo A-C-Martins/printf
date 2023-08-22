@@ -37,8 +37,13 @@ int _printf(const char *format, ...)
 						handle_c(va_arg(args, const int));
 						break;
 					}
+				case 'd':
+					{
+						handle_c(va_arg(args, const int));
+                                                break;
+					}
 				case 'r':
-				    {
+					{
 						handle_r(va_arg(args, const int));
 						break;
 					}
