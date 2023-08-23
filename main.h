@@ -26,5 +26,7 @@ int print_lX(long int x);
 int print_lu(va_list u);
 int print_lo(va_list o);
 int handle_r(const int r);
+int handle_d(const int d);
+int rot13(const char* rot);
 
 #endif
