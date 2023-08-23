@@ -1,17 +1,17 @@
 #include "main.h"
 /* @handle_d - decimal integer specifier
- * @dandle_i: integer specifier
+ * @handle_i: integer specifier
  *
  */
 
-int handle_d(const int *format)
+int handle_d(const int d)
 {
-    write(1, &format, 1);
-    return (1);
+    putchar('%');
+    return (d);
 }
 
-int handle_i(const int *format)
+int handle_i(const int i)
 {
-    write(1, &format, 1);
-    return (1);
+    putchar('%');
+    return (i);
 }
