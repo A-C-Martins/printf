@@ -106,6 +106,6 @@ int handle_p(const unsigned long p)
 
 	_putchar('0');
 	_putchar('x');
-	count = count + print_x(n) + 2;
+	count = count + print_lX(n) + 2;
 	return (count);
 }
