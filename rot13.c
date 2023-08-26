@@ -2,10 +2,10 @@
 
 /**
 * rot13 -  encodes a string using rot13
-* @rot: string to encode
+* @x: string to encode
 * Return: bytes printed
 */
-int rot13(const char* rot)
+int rot13(va_list x)
 {
 	char *str, *aux;
 	char input[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
@@ -13,7 +13,7 @@ int rot13(const char* rot)
 	int i = 0, j;
 
 
-	str = rot;
+	str = va_arg(x, char*);
 	for (i = 0; str[i] != '\0'; i++)
 	{}
 	aux = malloc(sizeof(char) * (i + 1));

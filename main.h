@@ -6,28 +6,29 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-void percent_handle(const char *format);
-int handle_s(const char *strn);
-int handle_c(const int text);
-int handle_i(const int i);
-int handle_d(const int d);
-int _putchar(int c);
-int _printf(const char *format, ...);
-
-typedef struct print_lh
+typedef struct print_st
 {
-    char lett;
-    int (*function)();
-} prt;
-int (*get_non_c(char my_char))(va_list);
-int print_ld(va_list l);
-int print_lx(long int x);
-int print_lX(long int x);
-int print_lu(va_list u);
-int print_lo(va_list o);
-int handle_r(const int r);
-int handle_d(const int d);
-int handle_i(const int i);
-int rot13(const char* rot);
+	char type;
+	int (*function)();
+} print_t;
+
+int _printf(const char *format, ...);
+int print_char(va_list x);
+int print_string(va_list x);
+
+int _strlen(char *);
+int _putchar(char c);
+int print_perc(void);
+int print_bin(va_list x);
+int print_u(va_list x);
+int print_oc(va_list n);
+int print_hex(va_list n);
+int print_HEX(va_list n);
+int rot13(va_list x);
+int print_rev(va_list x);
+int print_S(va_list x);
+int print_p(va_list x);
+int (*get_print(char type))(va_list);
+int handle_d(va_list x);
 
 #endif

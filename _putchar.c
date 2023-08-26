@@ -7,7 +7,8 @@
  * @c: The character to print
  * Return: c if successful
  */
-int _putchar(int c)
+int _putchar(char c)
 {
-	return putchar(c);
+	putchar(c);
+	return (0);
 }

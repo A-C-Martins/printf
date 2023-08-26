@@ -1,62 +1,45 @@
 #include "main.h"
 
 /**
- * percent_handle - Handles the '%' character
- * @format: check for format '%'
-*/
-void percent_handle(const char *format)
+* print_perc - print percentage
+* Return: 1
+**/
+int print_perc(void)
 {
-	if (*format == '%' && *(format + 1) == '%')
-	{
-		_putchar('%');
-		format += 2;
-		/*skip the consecutive '%'*/
-	}
-	else
-		if (*format == '%')
-		{
-			format++;
-			/*move to the next character after '%'*/
-			/*handle any additional operations specific to '%'*/
-			/*print a '%' character*/
-			/*putchar('A');*/
-		}
-}
-
-/**
- * handle_s - Takes care of '%s' format spacifier
- * @strn: format s placeholder"
- *
- * Return: i
- * =========================================================
-*/
-int handle_s(const char *strn)
-{
-	/*va_list str;*/
-	int i;
-	/*char *strn;*/
-	if (strn == NULL)
-	{
-		strn = "(null)";
-	}
-
-	for (i = 0; strn[i]; i++)
-	{
-		/* iterate over ther the character to print it out*/
-		_putchar(strn[i]);
-	}
-	return (i);
-}
-
-/**
- * handle_c - handlels the c format
- * @text: character handled
- *
- * Return: 1
- * ==========================================================
-*/
-int handle_c(const int text)
-{
-	write(1, &text, 1);
+	write(1, "%", 1);
 	return (1);
+}
+
+/**
+* print_char - writes the character c to stdout
+* @c: The character to print
+* Return: On success 1.
+* On error, -1 is returned, and errno is set appropriately.
+**/
+int print_char(va_list c)
+{
+	char x = va_arg(c, int);
+
+	write(1, &x, 1);
+	return (1);
+}
+
+/**
+* print_string - write the string s to stdout
+* @s: the string to print
+* Return: on succes number of bytes printed
+**/
+int print_string(va_list s)
+{
+	int count;
+	char *str;
+
+	str = va_arg(s, char*);
+	if (str == NULL)
+		str = "(null)";
+	for (count = 0; str[count]; count++)
+	{
+		write(1, &str[count], 1);
+	}
+	return (count);
 }

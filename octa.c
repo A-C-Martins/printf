@@ -1,16 +1,16 @@
 #include "main.h"
 
 /**
-* print_lo - print number to octal
-* @o: number to print
+* print_oct - print number to octal
+* @n: number to print
 * Return: number of bytes printed
 **/
-int print_lo(va_list o)
+int print_oct(va_list n)
 {
-	unsigned long int x = va_arg(o, long int);
+	unsigned int x = va_arg(n, unsigned int);
 	int res, i, j, count = 0;
 	char *ptr;
-	unsigned long int  y = x;
+	unsigned int  y = x;
 
 	if (x < 1)
 	{
@@ -35,20 +35,4 @@ int print_lo(va_list o)
 	}
 	free(ptr);
 	return (count);
-}
-
-/**
- * handle_r - prints r
- * @r: value to be printed
- *
- * Return: 0
-*/
-int handle_r(const int r)
-{
-	if (r)
-	{
-		_putchar('%');
-		_putchar('r');
-	}
-	return (0);
 }

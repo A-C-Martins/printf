@@ -1,80 +1,50 @@
 #include "main.h"
 
-int (*l)(va_list);
-int j = 0, c;
 /**
- * _printf - prints out inputs
- * @format: inputed string
- */
-
+* _printf - print something
+* @format: list of directives
+* Return: the number of characters printed
+**/
 int _printf(const char *format, ...)
 {
-	int i;
-	va_list args;
+	va_list elements;
+	int (*f)(va_list);
+	int count = 0, i;
 
-	va_start(args, format);
-
-	/* iterating throgh the agument*/
-	for (i = 0; format[i] != '\0'; i++)
+	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
+		return (-1);
+	va_start(elements, format);
+	for (i = 0; format[i] != '\0' ; i++)
 	{
-		/* check on format specifier '%' */
 		if (format[i] == '%')
 		{
-			/* call on percent_handle() */
-			percent_handle(format);
-			i++;
-			/*using switch to check on other formats*/
-
-			switch (format[i])
+			if (format[i + 1] != '%')
 			{
-				case 's':
-					{
-						handle_s(va_arg(args, const char*));
-						break;
-					}
-				case 'c':
-					{
-						handle_c(va_arg(args, const int));
-						break;
-					}
-				case 'd':
-					{
-						handle_c(va_arg(args, const int));
-                                                break;
-					}
-				case 'r':
-					{
-						handle_r(va_arg(args, const int));
-						break;
-					}
-				case 'l':
-					{
-						l = get_non_c(format[i + 1]);
-						if (l == NULL)
-						{
-							write(1, &format[i], 1);
-							j++;
-						}
-						else
-						{
-							j = j + l(args);
-							c++;
-						}
-						i++;
-					}
-				default:
-					{
-						break;
-					}
+				f = get_print(format[i + 1]);
+				if (f == NULL)
+				{
+					write(1, &format[i], 1);
+					count++;
+				}
+				else
+				{
+					count = count + f(elements);
+					i++;
+				}
+			}
+			else
+			{
+				write(1, &format[i], 1);
+				count++;
+				i++;
 			}
 		}
 		else
 		{
-			/*print non format specifier*/
-			_putchar(format[i]);
+			write(1, &format[i], 1);
+			count++;
 		}
 	}
-
-	va_end(args);
-	return (0);
+	va_end(elements);
+	return (count);
 }

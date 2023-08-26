@@ -5,9 +5,9 @@
 * @x: integer to print
 * Return: number of byte printed
 **/
-int print_u(const unsigned int x)
+int print_u(va_list x)
 {
-	unsigned int n = x, i = 1, divi = 1, j;
+	unsigned int n = va_arg(x, int), i = 1, divi = 1, j;
 	unsigned int m = n;
 	unsigned int bck = n;
 
